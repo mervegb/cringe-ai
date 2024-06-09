@@ -1,15 +1,15 @@
-import Head from "next/head";
-import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
-import Image from "next/image";
-import mainImage from "@/assets/images/main_image.jpg";
-import { Form, Button, Spinner } from "react-bootstrap";
-import { FormEvent, useState } from "react";
+import Head from 'next/head';
+import { Inter } from 'next/font/google';
+import styles from '@/styles/Home.module.css';
+import Image from 'next/image';
+import mainImage from '@/assets/images/main_image.jpg';
+import { Form, Button, Spinner } from 'react-bootstrap';
+import { FormEvent, useState } from 'react';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
-  const [quote, setQuote] = useState("");
+  const [quote, setQuote] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -17,13 +17,13 @@ export default function Home() {
     e.preventDefault();
 
     const formData = new FormData(e.target as HTMLFormElement);
-    const prompt = formData.get("prompt")?.toString().trim();
+    const prompt = formData.get('prompt')?.toString().trim();
 
     if (prompt) {
       try {
         setLoading(true);
         const response = await fetch(
-          "/api/cringe?prompt=" + encodeURIComponent(prompt)
+          '/api/cringe?prompt=' + encodeURIComponent(prompt)
         );
         const { quote } = await response.json();
         setQuote(quote);
@@ -73,7 +73,7 @@ export default function Home() {
           </Button>
         </Form>
         {loading && <Spinner animation="border" />}
-        {error && "Something went wrong. Please try again."}
+        {error && 'Something went wrong. Please try again.'}
         {quote && <h5>{quote}</h5>}
       </main>
     </>
